@@ -4,7 +4,7 @@
 
 // Function declaration and definition
 void insertItem(int arr[], int *length, int value, int position);
-// void deleteItem(int arr[], int *length, int position);
+ void deleteItem(int arr[], int *length, int position);
 // void updateItem(int arr[], int length, int position, int newValue);
 // int searchItem(int arr[], int length, int value);
 
@@ -33,14 +33,14 @@ int main() {
                 insertItem(arr, &length, value, position);
                 break;
 
-            // case 2:
-            //     printf("Enter position to delete (0 to %d): ", length - 1);
-            //     scanf("%d", &position);
+             case 2:
+                 printf("Enter position to delete (0 to %d): ", length - 1);
+                 scanf("%d", &position);
             //     // Call the delete function here
-            //     deleteItem(arr, &length, position);
-            //     break;
+                deleteItem(arr, &length, position);
+                 break;
 
-            // case 3:
+             //case 3:
             //     printf("Enter position to update (0 to %d): ", length - 1);
             //     scanf("%d", &position);
             //     printf("Enter new value: ");
@@ -93,4 +93,22 @@ void insertItem(int arr[], int *length, int value, int position) {
     printf("Item inserted successfully.\n");
 }
 
+// Delete an item from the array at a given position
+void deleteItem(int arr[], int *length, int position) {
+    if (*length == 0) {
+        printf("Array is empty. Nothing to delete.\n");
+        return;
+    }
+    if (position < 0 || position >= *length) {
+        printf("Invalid position.\n");
+        return;
+    }
 
+    // Shift elements to the left to fill the gap
+    for (int i = position; i < *length - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    (*length)--;
+    printf("Item deleted successfully.\n");
+}
